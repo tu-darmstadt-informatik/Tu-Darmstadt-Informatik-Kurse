@@ -1,0 +1,72 @@
+<mavlc.test__wrapper.ErrorTestWrapper>
+  <stackTrace>
+    <trace>mavlc.Main.main(Main.java:205)</trace>
+  </stackTrace>
+  <suppressedExceptions class="java.util.Collections$UnmodifiableRandomAccessList" resolves-to="java.util.Collections$UnmodifiableList">
+    <c class="list"/>
+    <list reference="../c"/>
+  </suppressedExceptions>
+  <error class="mavlc.error_reporting.StructureDimensionError">
+    <stackTrace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitRecordInit(ContextualAnalysis.java:960)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitRecordInit(ContextualAnalysis.java:87)</trace>
+      <trace>mavlc.ast.nodes.expression.RecordInit.accept(RecordInit.java:68)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitValueDefinition(ContextualAnalysis.java:259)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitValueDefinition(ContextualAnalysis.java:87)</trace>
+      <trace>mavlc.ast.nodes.statement.ValueDefinition.accept(ValueDefinition.java:57)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitFunction(ContextualAnalysis.java:210)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitFunction(ContextualAnalysis.java:87)</trace>
+      <trace>mavlc.ast.nodes.function.Function.accept(Function.java:73)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitModule(ContextualAnalysis.java:162)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitModule(ContextualAnalysis.java:87)</trace>
+      <trace>mavlc.ast.nodes.module.Module.accept(Module.java:47)</trace>
+      <trace>mavlc.Main.main(Main.java:200)</trace>
+    </stackTrace>
+    <suppressedExceptions class="java.util.Collections$UnmodifiableRandomAccessList" reference="../../suppressedExceptions"/>
+    <message>Error @ @Single[-5, 5]in line 6, column 18: 
+Dimension 2 vs. dimension 1</message>
+    <node class="recordInit">
+      <srcLine>6</srcLine>
+      <srcColumn>18</srcColumn>
+      <type class="recordType">
+        <name>Single</name>
+        <declaration>
+          <srcLine>1</srcLine>
+          <srcColumn>0</srcColumn>
+          <name>Single</name>
+          <elements>
+            <recordElementDeclaration>
+              <srcLine>2</srcLine>
+              <srcColumn>1</srcColumn>
+              <type class="intType"/>
+              <name>x</name>
+              <localBaseOffset>0</localBaseOffset>
+              <isVariable>true</isVariable>
+            </recordElementDeclaration>
+          </elements>
+        </declaration>
+      </type>
+      <elements class="linked-list">
+        <unaryMinus>
+          <srcLine>6</srcLine>
+          <srcColumn>26</srcColumn>
+          <op class="intVal">
+            <srcLine>6</srcLine>
+            <srcColumn>27</srcColumn>
+            <val>5</val>
+          </op>
+        </unaryMinus>
+        <intVal>
+          <srcLine>6</srcLine>
+          <srcColumn>30</srcColumn>
+          <val>5</val>
+        </intVal>
+      </elements>
+      <name>Single</name>
+    </node>
+    <dim1>2</dim1>
+    <dim2>1</dim2>
+  </error>
+  <onlySyntax>false</onlySyntax>
+  <testFile>RecordInit1.mavl</testFile>
+</mavlc.test__wrapper.ErrorTestWrapper>

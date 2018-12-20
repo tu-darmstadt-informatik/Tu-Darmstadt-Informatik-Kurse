@@ -1,0 +1,5 @@
+function void main() {
+  val int a = 10;
+  val int b = 20;
+  val int c = true ? a : b;
+}

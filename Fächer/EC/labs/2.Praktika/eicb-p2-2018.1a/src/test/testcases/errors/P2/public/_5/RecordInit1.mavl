@@ -1,0 +1,7 @@
+record Single {
+	var int x;
+}
+
+function void main() {
+	val Single rec = @Single[-5, 5];
+}

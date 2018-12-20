@@ -1,0 +1,49 @@
+<mavlc.test__wrapper.ErrorTestWrapper>
+  <stackTrace>
+    <trace>mavlc.Main.main(Main.java:205)</trace>
+  </stackTrace>
+  <suppressedExceptions class="java.util.Collections$UnmodifiableRandomAccessList" resolves-to="java.util.Collections$UnmodifiableList">
+    <c class="list"/>
+    <list reference="../c"/>
+  </suppressedExceptions>
+  <error class="mavlc.error_reporting.NonConstantExpressionError">
+    <stackTrace>
+      <trace>mavlc.context_analysis.ConstantExpressionEvaluator.defaultOperation(ConstantExpressionEvaluator.java:23)</trace>
+      <trace>mavlc.context_analysis.ConstantExpressionEvaluator.defaultOperation(ConstantExpressionEvaluator.java:19)</trace>
+      <trace>mavlc.ast.visitor.ASTNodeBaseVisitor.visitExpression(ASTNodeBaseVisitor.java:196)</trace>
+      <trace>mavlc.ast.visitor.ASTNodeBaseVisitor.visitIdentifierReference(ASTNodeBaseVisitor.java:341)</trace>
+      <trace>mavlc.ast.nodes.expression.IdentifierReference.accept(IdentifierReference.java:49)</trace>
+      <trace>mavlc.context_analysis.ConstantExpressionEvaluator.visitAddition(ConstantExpressionEvaluator.java:41)</trace>
+      <trace>mavlc.context_analysis.ConstantExpressionEvaluator.visitAddition(ConstantExpressionEvaluator.java:19)</trace>
+      <trace>mavlc.ast.nodes.expression.Addition.accept(Addition.java:46)</trace>
+      <trace>mavlc.context_analysis.ConstantExpressionEvaluator.visitMultiplication(ConstantExpressionEvaluator.java:51)</trace>
+      <trace>mavlc.context_analysis.ConstantExpressionEvaluator.visitMultiplication(ConstantExpressionEvaluator.java:19)</trace>
+      <trace>mavlc.ast.nodes.expression.Multiplication.accept(Multiplication.java:46)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.evalConstExpr(ContextualAnalysis.java:120)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitVectorType(ContextualAnalysis.java:124)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitStructType(ContextualAnalysis.java:138)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitType(ContextualAnalysis.java:150)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitDeclaration(ContextualAnalysis.java:250)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitDeclaration(ContextualAnalysis.java:87)</trace>
+      <trace>mavlc.ast.visitor.ASTNodeBaseVisitor.visitVariableDeclaration(ASTNodeBaseVisitor.java:132)</trace>
+      <trace>mavlc.ast.nodes.statement.VariableDeclaration.accept(VariableDeclaration.java:49)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitFunction(ContextualAnalysis.java:210)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitFunction(ContextualAnalysis.java:87)</trace>
+      <trace>mavlc.ast.nodes.function.Function.accept(Function.java:73)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitModule(ContextualAnalysis.java:162)</trace>
+      <trace>mavlc.context_analysis.ContextualAnalysis.visitModule(ContextualAnalysis.java:87)</trace>
+      <trace>mavlc.ast.nodes.module.Module.accept(Module.java:47)</trace>
+      <trace>mavlc.Main.main(Main.java:200)</trace>
+    </stackTrace>
+    <suppressedExceptions class="java.util.Collections$UnmodifiableRandomAccessList" reference="../../suppressedExceptions"/>
+    <message>Error @ &quot;x&quot; in line 3, column 26: 
+Not a constant expression: x</message>
+    <expr class="idRef">
+      <srcLine>3</srcLine>
+      <srcColumn>26</srcColumn>
+      <idName>x</idName>
+    </expr>
+  </error>
+  <onlySyntax>false</onlySyntax>
+  <testFile>constexpr4.mavl</testFile>
+</mavlc.test__wrapper.ErrorTestWrapper>

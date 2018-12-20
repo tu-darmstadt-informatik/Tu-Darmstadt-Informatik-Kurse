@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="ex02/" kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/java/ex02"/>
+	<classpathentry kind="lib" path="target/scala-2.12/ex02_2.12-1.0-submission.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

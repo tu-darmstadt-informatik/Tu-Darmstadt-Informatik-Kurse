@@ -1,0 +1,9 @@
+[0m[[0m[0mdebug[0m] [0m[0mFull compilation, no sources in previous analysis.[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll sources are invalidated.[0m
+[0m[[0m[0mdebug[0m] [0m[0mRecompiling all 7 sources: invalidated sources (7) exceeded 50.0% of all sources[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling 7 Java sources to C:\Users\Leo\Desktop\Zeug\InformatikStudiumUnterlagen\Fächer\SE\Übung\Übung 5\ex05\target\scala-2.12\classes ...[0m
+[0m[[0m[33mwarn[0m] [0m[0mUnexpected javac output: javac: file not found: C:\Users\Leo\Desktop\Zeug\InformatikStudiumUnterlagen\FÃ¤cher\SE\Ãœbung\Ãœbung 5\ex05\src\main\java\ex05\Area.java[0m
+[0m[[0m[33mwarn[0m] [0m[0mUsage: javac <options> <source files>[0m
+[0m[[0m[33mwarn[0m] [0m[0muse -help for a list of possible options.[0m
+[0m[[0m[33mwarn[0m] [0m[0mjavac exited with exit code 2[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) javac returned non-zero exit code[0m

@@ -1,0 +1,76 @@
+<mavlc.test__wrapper.ASTTestWrapper>
+  <srcLine>-1</srcLine>
+  <srcColumn>-1</srcColumn>
+  <AST>
+    <srcLine>1</srcLine>
+    <srcColumn>0</srcColumn>
+    <function>
+      <srcLine>1</srcLine>
+      <srcColumn>0</srcColumn>
+      <name>main</name>
+      <returnType class="voidType"/>
+      <parameters/>
+      <functionBody>
+        <valDef>
+          <srcLine>2</srcLine>
+          <srcColumn>2</srcColumn>
+          <type class="intType"/>
+          <name>a</name>
+          <localBaseOffset>0</localBaseOffset>
+          <value class="intVal">
+            <srcLine>2</srcLine>
+            <srcColumn>14</srcColumn>
+            <val>10</val>
+          </value>
+        </valDef>
+        <valDef>
+          <srcLine>3</srcLine>
+          <srcColumn>2</srcColumn>
+          <type class="intType" reference="../../valDef/type"/>
+          <name>b</name>
+          <localBaseOffset>0</localBaseOffset>
+          <value class="intVal">
+            <srcLine>3</srcLine>
+            <srcColumn>14</srcColumn>
+            <val>20</val>
+          </value>
+        </valDef>
+        <valDef>
+          <srcLine>4</srcLine>
+          <srcColumn>2</srcColumn>
+          <type class="intType" reference="../../valDef/type"/>
+          <name>c</name>
+          <localBaseOffset>0</localBaseOffset>
+          <value class="select">
+            <srcLine>4</srcLine>
+            <srcColumn>14</srcColumn>
+            <type class="intType" reference="../../../valDef/type"/>
+            <condition class="boolVal">
+              <srcLine>4</srcLine>
+              <srcColumn>14</srcColumn>
+              <val>true</val>
+            </condition>
+            <trueCase class="idRef">
+              <srcLine>4</srcLine>
+              <srcColumn>21</srcColumn>
+              <type class="intType" reference="../../../../valDef/type"/>
+              <declaration class="valDef" reference="../../../../valDef"/>
+              <idName>a</idName>
+            </trueCase>
+            <falseCase class="idRef">
+              <srcLine>4</srcLine>
+              <srcColumn>25</srcColumn>
+              <type class="intType" reference="../../../../valDef/type"/>
+              <declaration class="valDef" reference="../../../../valDef[2]"/>
+              <idName>b</idName>
+            </falseCase>
+          </value>
+        </valDef>
+      </functionBody>
+      <sourceCodeOffset>-1</sourceCodeOffset>
+    </function>
+    <records class="linked-list"/>
+  </AST>
+  <testFile>Select11.mavl</testFile>
+  <onlySyntax>false</onlySyntax>
+</mavlc.test__wrapper.ASTTestWrapper>

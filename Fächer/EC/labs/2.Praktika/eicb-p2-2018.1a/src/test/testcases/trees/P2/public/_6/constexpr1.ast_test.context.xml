@@ -1,0 +1,45 @@
+<mavlc.test__wrapper.ASTTestWrapper>
+  <srcLine>-1</srcLine>
+  <srcColumn>-1</srcColumn>
+  <AST>
+    <srcLine>1</srcLine>
+    <srcColumn>0</srcColumn>
+    <function>
+      <srcLine>1</srcLine>
+      <srcColumn>0</srcColumn>
+      <name>main</name>
+      <returnType class="voidType"/>
+      <parameters/>
+      <functionBody>
+        <varDecl>
+          <srcLine>2</srcLine>
+          <srcColumn>1</srcColumn>
+          <type class="vectorType">
+            <elemType class="intType"/>
+            <dimExpr class="addition">
+              <srcLine>2</srcLine>
+              <srcColumn>17</srcColumn>
+              <leftOp class="intVal">
+                <srcLine>2</srcLine>
+                <srcColumn>17</srcColumn>
+                <val>3</val>
+              </leftOp>
+              <rightOp class="intVal">
+                <srcLine>2</srcLine>
+                <srcColumn>19</srcColumn>
+                <val>1</val>
+              </rightOp>
+            </dimExpr>
+            <dim>4</dim>
+          </type>
+          <name>x</name>
+          <localBaseOffset>0</localBaseOffset>
+        </varDecl>
+      </functionBody>
+      <sourceCodeOffset>-1</sourceCodeOffset>
+    </function>
+    <records class="linked-list"/>
+  </AST>
+  <testFile>constexpr1.mavl</testFile>
+  <onlySyntax>false</onlySyntax>
+</mavlc.test__wrapper.ASTTestWrapper>

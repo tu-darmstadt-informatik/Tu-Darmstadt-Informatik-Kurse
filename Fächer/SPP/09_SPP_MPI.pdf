@@ -1,0 +1,232 @@
+<!DOCTYPE html><html>
+<head>
+    <title>Login - Single Sign-on &#8211; Technische Universität Darmstadt</title>
+    <meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css"/><link type="text/css" rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/><link type="text/css" rel="stylesheet" href="/webjars/lato/0.3.0/css/lato.min.css"/><link rel="stylesheet" href="/css/cas.css"/><link rel="icon" href="/athene_favicon.ico" type="image/x-icon"/><script type="text/javascript" src="/webjars/zxcvbn/4.3.0/zxcvbn.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body id="cas" class="login">
+<div id="container" class="container">
+    <header class="header">
+    <div class="topnavigation"> <a id="sprache" href="login?locale=en">English</a></div>
+<div class="hauptnavigation_container">
+    <nav class="hauptnavigation"></nav>
+    <div class="clear"></div>
+</div>
+<div class="headerbild_container">
+    <a class="logo" href="http://www.tu-darmstadt.de" title="zur Startseite"></a>
+</div>
+</header>
+<div id="content">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="box" id="login">
+    <div class="login-header">
+        <h2>Login</h2>
+        
+        <span class="fa-stack fa-2x hidden-xs">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+        </span>
+    </div>
+
+    <form method="post" id="fm1" action="login">
+
+        <h2>Bitte geben Sie Ihre TU-ID und Ihr Passwort ein.</h2>
+
+        <section class="row">
+            <label for="username"><span class="accesskey">T</span>U-ID:</label>
+
+            <div>
+                <input class="required"
+                       id="username"
+                       pattern="[^A-Z]+"
+                       title="TU-ID kleingeschrieben"
+                       size="25"
+                       tabindex="1"
+                       type="text"
+                       accesskey="t"
+                       autocomplete="off" name="username" value=""/></div>
+        </section>
+
+        <section class="row">
+            <label for="password"><span class="accesskey">P</span>asswort:</label>
+
+            <div>
+                <input class="required"
+                       type="password"
+                       id="password"
+                       size="25"
+                       tabindex="2"
+                       accesskey="p"
+                       autocomplete="off" name="password" value=""/><span id="capslock-on" style="display:none;">
+                    <p>
+                        <i class="fa fa-exclamation-circle"></i>
+                        <span>FESTSTELLTASTE ist aktiviert!</span>
+                    </p>
+                </span>
+            </div>
+        </section>
+
+<!--        <section class="row check">
+            <p th:if="${passwordManagementEnabled}">
+                <input type="checkbox" name="doChangePassword" id="doChangePassword" value="true" th:checked="${param.doChangePassword != null}" tabindex="4"/>
+                <label for="doChangePassword" th:text="#{screen.button.changePassword}"/>
+            </p>
+        </section>
+
+        <section class="row check">
+            <p th:if="${rememberMeAuthenticationEnabled}">
+                <input type="checkbox" name="rememberMe" id="rememberMe" value="true" tabindex="5"/>
+                <label for="rememberMe" th:text="#{screen.rememberme.checkbox.title}"/>
+            </p>
+        </section>
+
+        <section class="row" th:if="${recaptchaSiteKey}">
+            <div class="g-recaptcha" th:attr="data-sitekey=${recaptchaSiteKey}"/>
+        </section>--><label class="checkbox-label">
+            <input id="warn"
+                   name="warn"
+                   value="true"
+                   tabindex="3"
+                   accesskey="w"
+                   type="checkbox" /><span>Ich möchte ge<span class="accesskey">w</span>arnt werden, bevor ich mich in einen anderen Bereich einlogge.</span>
+        </label>
+        <label class="checkbox-label">
+            <input id="publicWorkstation"
+                   name="publicWorkstation"
+                   value="false" tabindex="4"
+                   type="checkbox" /><span>Anmeldung ohne Single Sign-on.</span>
+        </label>
+        
+        <section class="row btn-row">
+            <input type="hidden" name="execution" value="237711af-3341-4cff-9cd8-2522ded23b10_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuUlUxS1UxVXpSVGd4TTNvd0wyVjBRVWhSTkU5SksyTnZWMnBQY3pWd1J6ZElUMnhOVVhaWVRuRkRUV0ppU0hwQ1ozcDZXV3hTVFhCWWQzbzNNMUpNTmtadk9XOUhabGd5TVVWRVNWWjZNWEIxV0ZkbGJFbHdaeTlXZEROMmVrNVJhMWRaTVdScmJqVnRUVW9yVTNneVJsVlpZalZxYzNORFRYVlpaMmxTUjBwV1prWkJNbVYyVjBwcmFWbFNkU3RzV1c5c2NYVTJTWHA0ZWxwdGFuTjRhaTh2T1ZsblIzSmpTamRSYTI1eWRHeHpkWEEzYmk5NlUwczFUalJpVmtWcmJtMUhaRVpPVWpGdGRXNU9iVU41VTNaWkwxRk1ObnAxYzBsRlRqTnpTak56YmxOQlEwSTNTR1ppUXpkM1NHTkVVSGRPVG5KUlowUm1OWGxtVG1aelVuaFhiSGMyUWxwT05IbHJaMk14Y0ZsM01uQm1OM0puSzFwbFozQjNOVVJEVkhrcksydFhNWFV6UVU4NWRFWTJhMXBxV0hwRU9YWjBURmRtYW04emEybHJjWFIyUTFoV09XVjFhV3N3Y21VME9YRnphMDFoV1drMlpGTlNRM1IwYkc1d1psTlhZekpoUlhKaFRrMU1NMGRuVVdOTlJEUXhZbWhHVTJwVWVGRmxjRVpqY0c1NldWYzRjMVJWUVZWMUwyZFVlbVU0VUVvMVRVeGhVbVZaTjFKS1YwMXFTVGg2YmxsbWNrb3liVWN2ZGpoSVpFUkROemxwZDJweVQzTTFPU3M0VjBwNGNEWlRaSGRyWVRsVk1tdDVlV0ZoZUdwaU5FWlhiV0UyWlZSRU1qbDJaak5HWkVFemRVdDFTSEF2WjBaM1VVTmhVMHMwWm1KVlZrTkpkek5SYjNvdlNXUktWbFYxYnpOSWRVZENiMkp0YzBOb2RYcGhNRXB0UkdWdVJtbHVXa28zUWxoeE16VnJUR3RCYUVGM2VVcEpLM1YwUjJSWldFVmthVkJaZWpWTFZYaEVjemxOZGprMFVXNUtaa0kzTjBwSFRVZDNjV3R4TkVSRGFEQkRiMk52WmpCb2NGazNUMDEwWXpWQlJYVjNhVWgzVTB4dFoydFdaekZKZGtkc2EyMUxSMjFQTTBRd0syUnFVM1U0UTJkYVl6TnFlVEZMYW1nNFJFWm5TRU5aTjNsNGRsWjNjMDl6TVdka2JtdFJRbGd6UVhKclpIUm5kVTE0TjFGNlZsQk1Oa1ZqVlV3M01qUm9XRkEyVldGTlptRlpZV2h6Um5vMlpUZ3dSR3gwZURWcFVsZzBlV3RNTUhaNllqZDRWMk4zUnpocVVXcDBkbmRLYzBzeGNuRk5TMGx4VGpaVU1YcG5WUzk1Y25wcVkwRnBhWEJ3Ym5SMVZuYzJTVk42UnpsR2R6aEtVV2haYTJVdlkzTm1XQ3MzYURadlpUTTBVbkpRY1hSM1IwRXdhM0ZDU1dGSFFtbGpNVkk0WVZsbFZrZFVjRXhST0c5a1NXUjBkVWszTm1KSVJrTTBkbVF6SzBZMVZrWlplRzB6T1hOTmJqZFJNMWRTVWpGVkx6Sk1kRVprYld0MVNURjRlQzh2WW1KRVdsRmlkVnA0WmpCaVIyaG5TV05ZYmtKQ05sZFdNakpZZFZaUmNsQkhaMFppZEVWRFdVdzBNbk4xWm1FMU56WlNXVFYzYUdSSGRXY3JVMWxhZURkRUsyTXZRMFpqY1RaVloyczBabGhTTlRkTFkwMW5VemRPVUZSdE5EVXdkRkEyUm01Uk9IUjVlVWhRYWpaYU1tUkpZMk0xWm1KcFlteGhTMEZGY0U1WlRVOTZiV3hRVDB4VE1rSndlVVo2WVhOd2MyRktZbUZFUTJVMVdsQnVSamxUWmtOVFVIcG1VVzVGZFc1Mk1EbGxielIyTkdGVlIwTlhWR2RuTjB0a1dWSkZOalZzVGpKSmN6VkdkV1ZLTTNkTmEyZElaREZ6VkhNNUswbDBaMGt3YTB4c2IyNUtkMVE1VFZZeU1qWlhZMGd3V1RaUlVGaHBia2cwV0M5MWJVcFpRVEptUlRselUydFRaelY2UWpsSFZIQjNRbk5CV1UxR1dWbGlXRmRwYmtacVdubGhXVEJFWjNobWVtZG5OR2hLY21RemJrVlZPV2RsVUZwbU4zZFFTRE54UTFseGMyRk1WREZVY0hSMVQwUldSblZaUWpCelRVbENXRkp2Tkc5R1JUUkVkbEJCYzJwV1YwUXJhRk0xYzBOb1ZISnlVM01yZFdWSmFqTXJSVmMxYjJKTFdrZGFkMUJ1V1ZOelJVVlJUMncxY0dGc1lqRlFabXQ2WlhWeFFpdGpkRWRXTkU5bk1tMDNia2Q1U1hSblVEaDRMeXQyWW01R1RVTlRjVkpXTlc1SU5XTlBhRmROVFV4bWRYZG5WMWh4SzNwNU0zbHZaWEZOUmpWUGRpOUdSMDluVlRKWGFEQlRRWGQ0Tld4dFYwcFZOMVZ5UWpORFlXUXZUR1Z4VXk4eFVrVnpiM2g0ZGxOTmRsVlVWV3B2VUVNd2JXdHJSRTF3TmtSTEsyVllSR2hEYW14UU5tbFVaVGhzYzFwV1owbEZNbTU0TDBFMU9FaFRhM0JJTmpJNUwyeEpjV0pITUZabGMyWkxTbXc0UVN0c1JGYzRjVTk2UVM5Qk5XOXdVR05oZW5ZMFp6Sm5Uemh5VDFjek5TODNRMU5WUWxGM1NWYzJkemd5T0d4VlFYTkhVM1ZhVlZGaWNWWTNNMHBoVUZaMEwwbDRUVzQ0WkVWbldIQjBWVTB4TVVWQlJDdEtOWFpJTVRoSFFrdFNaMHBZV1U1V1dYSmtVelV2UWs0NGFYTlBTRzFQVEcxTlluZDZkRVF4TURSblYzUkxhRWxPWjNOMFJGUlFZVlZFTm1wb1kwdDVaMU5XTlRKdkwwMUlRemRyU0ZCNVUyTTJSMjVJUW5Cb1RWWjNOMk5LWVRGaWNraENZMDh2UmpOT1RFMVNjWEpWYlZGMkwwMXNaV1kyVkRWVVpVMTFaSFp3ZVRCVGJsaEJTVGN4YkVVNFptVmxOVzE1Y2xobGJuaFZSak5wWldZNWJGZ3hVWFV2WlVKTGQyeEJaakJvY2k5RFVsSXJZblpPTTBkc2JuWmhPRUZHZUZKTmMzTjFRMlZpT0ZFMU56bGFhRXhrV21oTmJHVnRhMnRJV0Vrd1p6QTBMMEZvVlZGTFdXUnFlQzlzUWtKd1dTOWxTek5PTW5WTlUyOXRkRXRJYjA1VFZVSkNXbU5YVDBZelFpczBOV3RWV2tFMmNsZzVNUzlQVWtkb1V6bE9VemxsTUZWNVRVOHpWekpEV0habVZrcDVNakpGUlhOMFNHaExiVE5rVFZFcmRqWnFjMHRKVlVSTlVVOUJiVFpHVGpsTFkwZFlhaTlNWVcxMVRXVm9lRE5QVVVZeWFFNUdhbEl6TkhWa2FYa3ZPV3RLV1haeWVXRXhPWE1yYkM5b2MwZG9iakZhTTFGME0zTm5SMGxCUXpkSWIzQTBNV2haVWlzeVJrbERRekJGT1ZWd1QzSXJlSE5rWkhoVVdqbHBWbmgwT1dWeGJtbDBaalJTZEV0dmJFVjJka3N6ZGxOYVZHZExTRmh6V0M5RmNYaDJOMVY0ZUhneGIyNVpkblY2VldkdGNqQmxUM2hMWm5keE5rMXFhMDV5TjIxS1UwWkRhMFpSTVUxSk1VSTFNMEp5UTA4eVRVMXdaek5oSzJKR01UTXpTRE4xUVdkSk9FeE1MM0JxYURrNGVrTlhWRUYwWVhvMWRrcHFTalZYUjBsaVptUldXVzFXY0d3d1ozRnJhQzlqVVdKc1ltUk1UWEZpYmtGNWVHZGxVRVpvV0VOd2JWSjFURUp5ZVhNdmFHeFpNbHB1U0c5MVVIVXhTbTU1ZGtwTlRXNURZWGxoYlZneGJXRkhZakY0UjBzdk1qQnRkazByZG1oaFRtcGtNMDluWW5nM09IRnBNMDFMVDFScVQxTTViRmhtTmpka1VWZE9PR1J2V21KS056WlFlakF6WVM5S1FUZHBUVGhrVVRoMVdtUk1UWFZzVGpNdmF6QnZVaTlRVGxKc1QwTm1SWEF6ZUVORFVsUjFhRVZGU2xSb1ZUaGxNa1pQVG1GcmQwazFZa1kxVUZwSmFsWkJUblJNYTNSVU5VTnBRakpHZVRWU1pYSjBkWGxuVlhST1RXVlZZMGxWVkRoVWFuTkZNMGhJUjA5S1dYSTJTRUZWYzNwT1VWSm5la1pZU1V3eU5WUktWVlJFYzBGRlZESTVVR3RSY204ellrSjVRWFZZWVUxS1VIVlRNWEJrV1VsbVMxSkxibXM1YTNwb05VdFJiVko0UkVjeWRrVnFPV3RIYmxseVJWaDVjV1pHUlc5c1JWbDFZMk5zT1ZsNkwxSXhjR1JHVFhSTlNFWjJjRU16WjA5SllrdzNRbVpKVVdrMFNDc3JUek4xWlZwTmJWSlhRMlJvSzI1blVVOXpRazEzZGl0RlVGZHhaMVFyUTFWS1EzSnBhVk5rWlN0Rk1tcHhjbkF2YUhGdU5HOUdOMnhSYzJOb09HdGtVek0zZGpCVFVFbGFLMmx1Y0hCbVEySjZaMk4xYTFRM1VGZHpMeXN2VWpSMU1GRklVRThyVlRJMlkyZENaMkV4ZEV3d1puTnZaa3BTTDI1Q1RFdG9Na3BzWmtZclRDczJOMjlSVVc1WU5rczBjemRhTUVaQ09Wa3ZXVlE1VXpWSGMyeEdaekJCYkU1aU0zQnZXa1F3U0RRd1ZHWnZiazF5Y25GamFrOTVkMHMxUWpaek5VOXRURUZZWkdkWWVuZE1SMVphUm1kRlRIZFNSSGxETm5aU1JWcFFUME5FS3k5RWJtOUZiRXBwTkN0WE5YcHlWQzl3YTJwb1pGQnJOM2hsYXpCaE1YUmxOR3gxUkZWblQwMXBhazl1THpOYWMwOHJWVzFDYW5kVWJuWkhRbFJpWXpocVpsWlhibEZQTjNkalpVRlplalp6ZEhaT1UwRlRUazF2ZGl0blRHSkdWMGRMY0ZSNVJWbExZblo0TDIxUGFuaGxhRVpHZDA1Q2VrTlZiSGhRWlhacVNXSXlNazlJV0RneEwxbGtVeTlsVVdGMVJWRlZibXB6TVU5emNuRk1iVkpDTm5KRWNGWjRkRzlLUVU0eFZERTFTRzFFVUcxU1pHVlBjRlpTVDFoWFZERlVlRWhLTVhWWE9YRTVVblJYUlZabU1VZFhVelpxVUVKNFUwdHNWM3BWTjJsSlExcFJjblpvTVhGWk4xazRURTloVFZOaU5qTmpXbTFQTTJablRUWjBORVl5Wm5SSmRsSTBjVWhrWmpWSE1IaDNSVzVSUmxwb1RVbE1jekY2TUd0clNGWmxjemxoWjFOSE5HMUdTRzVDZDA5RVNqSlNWSEZwYzBaSU5XTkdVRTFsTkRseVZtVmphak5hVVRVemNESmlWREUwYVZGWFltUm1UMlJDVVdOWFV6Z3ZVVzlTUW5BNWNFeEtlV0k0VGxwVmFISnFNM2w1WTFGT0t6TXZZWEJIUTNCT1FuZHRiVFEzVDJOUlpWb3dhbEU5UFEuUmlqRXBmV2d5aC1MNkFFVVBzMDJyTlhUMEozLU5iSERUQTJvNjBCcjZWMjNWSDVnMENqX0wyQlRCdnNmdDZHNF9YTTZxbnVkWVI5a1FhVXF4XzNqamc="/><input type="hidden" name="_eventId" value="submit"/><input type="hidden" name="geolocation"/><input class="btn btn-submit btn-block"
+                   name="submit"
+                   accesskey="l"
+                   value="ANMELDEN"
+                   tabindex="6"
+                   type="submit"/></section>
+    </form>
+
+    <div>
+        <span class="fa fa-question-circle"></span>
+        <span><a href="https://www.idm.tu-darmstadt.de/passwordRecovery">Passwort vergessen? </a></span>
+        <p/></div>
+
+    <script type="text/javascript">
+        var i = "Einen Moment bitte..."
+        $("#fm1").submit(function () {
+            $(":submit").attr("disabled", true);
+            $(":submit").attr("value", i);
+            return true;
+        });
+    </script>
+    <div id="sidebar">
+    <div class="sidebar-content">
+        <p>Aus Sicherheitsgründen sollten Sie bei Verlassen der passwortgeschützten Bereiche sich explizit ausloggen und Ihren Webbrowser schließen!</p>
+    </div>
+</div>
+
+</div>
+</div>
+            <div id="notices" class="col-sm-12 col-md-6">
+                <div id="cookiesDisabled" class="alert alert-info" style="display:none;">
+    <h2>Cookies ausgeschaltet</h2>
+    <p>Ihr Browser akzeptiert keine Cookies. Single Sign-on wird NICHT funktionieren.</p>
+</div>
+<div id="serviceui" class="alert alert-info">
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <img src="images/webapp.png"/></td>
+                <td id="servicedesc">
+                    <h2>HRZ Anwendungen CE</h2>
+                    <p>Moodle</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="well well-lg">
+    <h3>HRZ Links</h3>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="/consentReview">
+                <i class="fa fa-cogs"></i> Zustimmung zur Datenweitergabe
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.idm.tu-darmstadt.de/idmPortal">
+                <i class="fa fa-user-o"></i> IDM-Portal
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.idm.tu-darmstadt.de/activation">
+                <i class="fa fa-power-off"></i> Aktivierung der TU-ID
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hrz.tu-darmstadt.de/itsicherheit/regelwerke/allgemeinebenutzerordnung.de.jsp">
+                <i class="fa fa-book"></i> Benutzerordnung
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hrz.tu-darmstadt.de/itsicherheit/regelwerke/itsecuritypolicy.de.jsp">
+                <i class="fa fa-info"></i> IT-Security-Policy
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hrz.tu-darmstadt.de/home/newsrss.de.rss">
+                <i class="fa fa-rss"></i> HRZ-News
+            </a>
+        </li>
+    </ul>
+</div>
+</div>
+        </div>
+    </div>
+</div>
+<footer>
+<a href="https://www.hrz.tu-darmstadt.de/kontakt">Kontakt</a>
+<p class="powered">Powered by <a href="http://www.apereo.org/cas">Apereo CAS</a>   </p>
+</footer>
+<div><script src="/webjars/headjs/1.0.3/head.min.js"></script>
+<script type="text/javascript" src="/js/cas.js"></script>
+
+<script>
+head.ready(document, function () {
+    if (!window.jQuery) {
+    	var jqueryUrl = "\/webjars\/jquery\/3.3.1\/dist\/jquery.min.js"; 
+        head.load(jqueryUrl, loadjQueryUI);
+    } else {
+        notifyResourcesAreLoaded(resourceLoadedSuccessfully);
+    }
+});
+
+function loadjQueryUI() {
+	var jqueryUrl = "\/webjars\/jquery-ui\/1.12.1\/jquery-ui.min.js"; 
+	head.load(jqueryUrl, loadjQueryCookies);
+}
+
+function loadjQueryCookies() {
+	var jqueryUrl = "\/webjars\/jquery-cookie\/1.4.1-1\/jquery.cookie.js"; 
+	head.load(jqueryUrl, notifyResourcesAreLoaded(resourceLoadedSuccessfully));
+}
+
+function notifyResourcesAreLoaded(callback) {
+    if (typeof callback === "function") {
+        callback();
+    }
+}
+</script>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text>+// Uncomment the following line to change the fontsize and font:
+// fontsize=14
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>675</x>
+      <y>252</y>
+      <w>315</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>AbstractClass
+GeoObjekt
+--
+Attribute :
+Identifikationsnummer(long),
+Eigenschaften(Eigenschaft), 
+Benutzername(String), Änderungsdatum(Calendar), 
+IP(String)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1215</x>
+      <y>234</y>
+      <w>189</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>Fläche
+--
+Attribute : 
+Wege(Liste&lt;Weg&gt;) 
+ //Nicht-leere Liste aus Wege</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1071</x>
+      <y>63</y>
+      <w>216</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Punkt
+--
+Attribute : 
+Längengrad(double),
+Breitengrad(double)
+ //Koordinaten</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1098</x>
+      <y>459</y>
+      <w>252</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Weg
+--
+Attribute : 
+Punkte(Liste&lt;Punkt&gt;)
+ //geordnete nicht-leere Liste aus Punkten</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>0</y>
+      <w>234</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Routenplanung
+--
+Attribute :
+Start(Punkt), Ziel(Punkt),
+Fahrzeit(int), Distanz(int),
+Route(Liste&lt;Weg&gt;)
+ //Nimmt Start- und Zielpunkt an
+ //Kann Fahrzeit, Distanz und Route 
+ //aus Wegen berechnen </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>981</x>
+      <y>279</y>
+      <w>252</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+extends</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>981</x>
+      <y>378</y>
+      <w>135</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+ extends</panel_attributes>
+    <additional_attributes>130.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>711</x>
+      <y>549</y>
+      <w>252</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Eigenschaft
+--
+Attribute: 
+Eigenschaften(Liste&lt;Pair&lt;String,String\&gt;&gt;
+ //Eigenschaften eines GeoObjekts</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>837</x>
+      <y>378</y>
+      <w>90</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Verwendet</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>801</x>
+      <y>126</y>
+      <w>90</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Verwendet
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>981</x>
+      <y>108</y>
+      <w>108</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+extends</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>405</x>
+      <y>468</y>
+      <w>144</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Moderator
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>369</x>
+      <y>243</y>
+      <w>135</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>User
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>423</x>
+      <y>261</y>
+      <w>144</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Kann sperren
+ //Bei mehreren 
+ //Fehlversuchen
+</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>252</y>
+      <w>198</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+
+
+Kann GeoObjekte erstellen 
+oder verändern
+</panel_attributes>
+    <additional_attributes>200.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>108</y>
+      <w>243</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+Kann Routen erstellen
+</panel_attributes>
+    <additional_attributes>250.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+</diagram>
