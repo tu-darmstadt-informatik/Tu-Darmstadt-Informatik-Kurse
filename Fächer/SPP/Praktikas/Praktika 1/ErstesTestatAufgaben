@@ -1,0 +1,86 @@
+Erstes Praktikum Testat Aufgaben:
+
+Unter anderem: #pragma omp [...]
+
+Unterschied: firstprivate, lastprivate, private
+	weiterunten steht mehr
+	firstprivate(list):Initialization of private variables
+
+	lastprivate(list): Finalization of private variables
+
+
+	Example:
+	int i = 10;
+
+    	#pragma omp parallel (fist/last)private(i)
+    	{
+        	printf("thread %d: i = %d\n", omp_get_thread_num(), i);
+       		i = 1000 + omp_get_thread_num();
+    	}
+	So ist i random, weil sich inside von Pragma der vorherige wert von i nicht gespeichert wird
+	lastprivate(i): speichert den vorherigen Wert von i | also kommt ül i = 10 heraus | nach Pragma, werden die anderen Werte voni nicht gespeichert also weiterhin i = 10
+	firstprivate(i): speichert die Werte für i ab, wenn pragma vorbei ist. also wenn i dann wieder shared ist, dann sind die werte die in pragma gemacht worden gespeichert.
+
+
+#pragma omp Single{[...]}
+	-Der Code im Construct wird nur von einem Thread ausgeführt
+
+
+Construct vs Region
+	Construct: -Construct ist das was in Pragma steht
+
+	Region: -scope und der andere Rest
+
+
+for parallelisierung vs norm parallelisierung
+	for parallelisierung: -Jeder Thread führen Teil der zumachenden Itertionen aus
+	Normale parallel Parallelisierung: -Jeder Thread führt die ganze Schleife aus
+
+Was passiert bei parallel
+	-Der code im Nest wird von jedem Thread ausgeführt
+collapse (2): was ist das
+	collapse(n): -Execution order of ordered constructs the same as in serial execution
+	-in Pragma
+	-collapse gibt an wie viele Schleifen parallelisiert werden sollen im Construct.(Normal nur einmal)
+	-n gibt an wie viele Schleifen nachfolgend parallelisiert werden sollen
+Task.wait
+	- lässt alle Threads erst weitermachen, wenn alle anderen Threads diesen Punkt erreicht haben
+
+OpenMP was für ein Programmier Modell ( OpenMP vs MPI)
+	-OpenMp: -shared-memory programming
+
+-priv vs shared
+	private: -Variables visible upon entry of the construct
+	shared: -Local variables declared within the region
+		-Loop index is private
+
+Beispiel aus den Folien
+void caller(int a[], int n) {
+	int i, j, m = 3;
+	 #pragma omp parallel for
+	 for (i = 0; i < n; i++) {
+		int k = m; for (j = 1; j <= 5; j++ )
+		callee(&a[i], &k, j);
+	  }
+}
+extern int c = 4;
+void callee(int *x, int *y, int z) {
+	int ii;
+	static int cnt;
+	cnt++;
+	for (ii = 0; ii < z; ii++)
+		*x = *y + c;
+}
+
+Shared : a, n, i , m, c, cnt, *x Private: j, i, z, ii, *y
+
+
+sind schleifen Var immer private ? -> ja
+
+warum mit 32 Threads langsamer? -> nur 16 "prozessoren"(Kerne)
+	 Why does this happen?" is kind of easy to answer. Imagine you have a corridor that you can fit four people down, side by side. You want to move all the rubbish at one end, to the other end. The most efficient number of people is 4.
+
+If you have 1-3 people then you're missing out on using some corridor space. If you have 5 or more people, then at least one of those people is basically stuck queueing behind another person all the time. Adding more and more people just clogs up the corridor, it doesn't speed up the acivity.
+
+So you want to have as many people as you can fit in without causing any queueing. Why you have queueing (or bottlenecks) depends on the questions in slm's answer.
+
