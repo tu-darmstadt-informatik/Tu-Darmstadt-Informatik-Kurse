@@ -1,0 +1,34 @@
+EICB 2 Testat
+
+
+Alex:
+Aufgabe 1
+1. Die expression muss vom Typ int sein
+2. Es darf nur max 1 Default-Case existieren
+3. Die normalen Cases müssen konstante Integer Werte und eindeutig (nur ein mal vorhanden) sein
+
+Aufgabe 2 musst du auf dem Teilbaum eben die Typen annotieren und wenn auf Variablen benutzt werden zu deren Deklaration einen Pfeil zeichnen (muss nicht mal gezeichnet werden, ich habs einfach aufgelistet)
+11:54
+Weitergeleitet
+EiCB Testat:
+Aufgabe 1
+kontextuelle Einschränkungen eines Ausdrucks aufzählen, ich hatte ein switch Statement und musste sagen welche 3 Einschränkungen gelten
+
+Aufgabe 2 ein AST ist gegeben und für einen kleinen Ausschnitt soll man einen dAST bilden
+
+
+Jonas (2.Praktika EiCB):
+Bei Aufgabe 1 musste ich die Bedingungen der semantischen Analyse für ein Select-Statement nennen:
+Also (expr1 ? expr2 : expr3) war gegeben und ich musste nur sagen, dass expr1 ein boolean sein muss,
+expr2 und expr3 müssen typgleich sein und dass der Rückgabewert der des Statements der Typ von expr2 uns expr3 ist.
+
+Bei Aufgabe 2 musste man in einem AST die Return-Typen von 5 markierten Nodes aufschreiben und sagen, ob und wo da ein Fehler vorliegt. Bei mir wurde da z.B. Or(int, bool) aufgerufen. Das ist natürlich ein Fehler, weil Or explizit nur bool Werte verarbeiten kann.
+
+Peter:
+Es gibt noch ein for each statement was man in Aufgabe 1 machen muss
+bei for each muss die expr1 typgleich sein mit der expr2
+
+
+
+
+Es gibt Insgesamt nur 3 Aufgabenblätter
