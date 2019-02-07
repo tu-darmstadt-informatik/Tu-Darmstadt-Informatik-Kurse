@@ -1,0 +1,50 @@
+diff --git a/CodeGeneration.java b/p3-fix.java
+index 319268c..d523bf5 100644
+--- a/CodeGeneration.java
++++ b/p3-fix.java
+@@ -267,7 +267,9 @@ public class CodeGeneration extends ASTNodeBaseVisitor<Instruction, Integer> {
+ 		/*
+ 		 * Emit loop body.
+ 		 */
++		int nextOffset = assembler.getNextOffset();
+ 		forLoop.getLoopBody().accept(this, null);
++		assembler.resetNextOffset(nextOffset);
+ 		/*
+ 		 * Execute increment and store to the variable.
+ 		 */
+@@ -303,6 +305,7 @@ public class CodeGeneration extends ASTNodeBaseVisitor<Instruction, Integer> {
+ 	 */
+ 	@Override
+ 	public Instruction visitIfStatement(IfStatement ifStatement, Integer arg1) {
++		int nextOffset = assembler.getNextOffset();
+ 		// Evaluate conditional
+ 		ifStatement.getTestExpression().accept(this, null);
+ 		/*
+@@ -314,6 +317,7 @@ public class CodeGeneration extends ASTNodeBaseVisitor<Instruction, Integer> {
+ 		 * Emit code for then-part
+ 		 */
+ 		ifStatement.getThenStatement().accept(this, null);
++		assembler.resetNextOffset(nextOffset);
+ 		if(ifStatement.hasElseStatement()){
+ 			/*
+ 			 * Emit jump over the else-part
+@@ -326,6 +330,7 @@ public class CodeGeneration extends ASTNodeBaseVisitor<Instruction, Integer> {
+ 			int startElse = assembler.getNextInstructionAddress();
+ 			assembler.backPatchJump(jump2else, startElse);
+ 			ifStatement.getElseStatement().accept(this, null);
++			assembler.resetNextOffset(nextOffset);
+ 			/*
+ 			 * Backpatch jump over else.
+ 			 */
+@@ -384,9 +389,8 @@ public class CodeGeneration extends ASTNodeBaseVisitor<Instruction, Integer> {
+ 		for(Statement stmt : compoundStatement.getStatements()){
+ 			stmt.accept(this, null);
+ 		}
+-		int size = assembler.getNextOffset() - nextOffset;
+-		assembler.emitPop(0, size);
+-		assembler.setNextOffset(nextOffset);
++
++		assembler.resetNextOffset(nextOffset);
+ 		return null;
+ 	}
+ 
